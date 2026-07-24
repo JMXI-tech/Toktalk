@@ -4,6 +4,10 @@ from flask_login import LoginManager
 from models import db
 from models.user import User
 
+app = create_app()
+
+if __name__ == "__main__":
+    app.run()
 
 def create_app():
     app = Flask(__name__)
