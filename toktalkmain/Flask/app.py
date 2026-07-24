@@ -3,11 +3,7 @@ from flask_login import LoginManager
 
 from models import db
 from models.user import User
-
-app = create_app()
-
-if __name__ == "__main__":
-    app.run()
+import os
 
 def create_app():
     app = Flask(__name__)
@@ -68,8 +64,15 @@ def create_app():
     def about():
         return render_template("about.html")
 
-    # Create database tables
+        # Create database tables
     with app.app_context():
         db.create_all()
 
     return app
+
+
+app = create_app()
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=True)
+
