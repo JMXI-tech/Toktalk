@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block title %}Post{% endblock %}
+
+{% block content %}
+
+<div class="post-container">
+
+    <div class="post-card">
+
+        <h2>{{post.title}}</h2>
+
+        <p class="post-author">
+            Posted by <strong>{{ post.author.username }}</strong>
+        </p>
+
+        <p class="post-content">
+            {{ post.content }}
+        </p>
+
+        <div class="post-actions">
+
+            <!-- LIKE / UNLIKE -->
+            <form action="{{ url_for('posts.toggle_like', post_id=post.id) }}" method="POST">
+                <form id="comment-form" action="{{ url_for('posts.create_comment', post_id=post.id) }}" method="POST">
+                    <button type="submit">
+                        👍 Like ({{ post.likes|length }})
+                    </button>
+                </form>
+
+                <!-- COMMENT -->
+                <a href="#comment-form">
+                    💬 Comment ({{ post.comments|length }})
+                </a>
+
+                <!-- EDIT AND DELETE - ONLY FOR POST AUTHOR -->
+                {% if current_user.is_authenticated and current_user.id == post.author_id %}
+
+                <a href="{{ url_for('posts.edit_post', post_id=post.id) }}">
+                    ✏ Edit
+                </a>
+
+                <form action="{{ url_for('posts.delete_post', post_id=post.id) }}" method="POST"
+                    onsubmit="if (!confirm('Are you sure you want to delete this post?')) return false; return confirm('This action cannot be undone. Do you really want to permanently delete this post?');">
+
+                    <button type="submit">
+                        🗑 Delete
+                    </button>
+
+                </form>
+
+                {% endif %}
+        </div>
+
+    </div>
+
+    {% for comment in post.comments %}
+
+    <div class="comment">
+
+        <strong>{{ comment.author.username }}:</strong>
+
+        <p>{{ comment.content }}</p>
+
+        {% if current_user.is_authenticated and current_user.id == comment.author_id %}
+
+        <form action="{{ url_for('posts.delete_comment', comment_id=comment.id) }}" method="POST"
+            onsubmit="return confirm('Are you sure you want to delete this comment?');">
+
+            <button type="submit">
+                🗑 Delete Comment
+            </button>
+
+        </form>
+
+        {% endif %}
+
+    </div>
+
+    {% else %}
+
+    <p>No comments yet. Be the first to comment.</p>
+
+    {% endfor %}
+
+    <form action="{{ url_for('posts.create_comment', post_id=post.id) }}" method="POST">
+
+        <textarea name="content" rows="4" placeholder="Write a comment..." required></textarea>
+
+        <button type="submit">Post Comment</button>
+
+    </form>
+
+</div>
+
+
+{% endblock %}

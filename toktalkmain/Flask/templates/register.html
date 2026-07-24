@@ -1,0 +1,31 @@
+
+{% extends "base.html" %}
+
+{% block title %}
+register
+
+{% endblock %}
+
+{% block content %}
+
+<h2> Create Account </h2>
+
+<form method="POST">
+
+    <label>Full Name</label><br>
+    <input type="text" name="fullname" placeholder="Enter your full name">
+
+    <label>Username</label><br>
+    <input type="text" name="username" placeholder="Choose a Username">
+
+    <label>Email</label><br>
+    <input type="email" name="email" placeholder="Enter your Email">
+
+    <label>Password</label><br>
+    <input type="password" name="password" placeholder="Create Password">
+
+    <button>Create Account</button>
+
+</form>
+
+{% endblock %}

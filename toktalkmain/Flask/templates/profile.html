@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+
+<div class="profile-container">
+
+    <h2>My Profile</h2>
+
+    <img src="{{ url_for('static', filename='default-profile.png') }}" alt="Profile Picture" class="profile-image">
+
+    <h3>{{ user.username }}</h3>
+
+    <p><strong>Full Name:</strong> {{ user.full_name }}</p>
+
+    <p><strong>Email:</strong> {{ user.email }}</p>
+
+    <p><strong>Bio:</strong> {{ user.bio }}</p>
+
+    <a href="{{ url_for('auth.edit_profile') }}" class="btn">
+        Edit Profile
+    </a>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}
+Edit Profile
+{% endblock %}
+
+{% block content %}
+
+<div class="edit-profile-container">
+
+    <h2>Edit Profile</h2>
+
+    <form method="POST" onsubmit="return confirm('Are you sure you want to save these profile changes?');">
+
+        <label>Full Name</label>
+        <input type="text" name="fullname" value="{{ current_user.full_name }}" placeholder="Enter your full name"
+            required>
+
+        <label>Username</label>
+        <input type="text" name="username" value="{{ current_user.username }}" placeholder="Enter your username"
+            required>
+
+        <label>Email</label>
+        <input type="email" name="email" value="{{ current_user.email }}" placeholder="Enter your email" required>
+
+        <label>Bio</label>
+        <textarea name="bio" rows="5" placeholder="Tell people about yourself">{{ current_user.bio }}</textarea>
+
+        <button type="submit">
+            Save Changes
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

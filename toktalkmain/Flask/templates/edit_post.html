@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}
+Edit Post
+{% endblock %}
+
+{% block content %}
+
+<div class="create-post-container">
+
+    <div class="create-post-card">
+
+        <h1>Edit Discussion</h1>
+
+        <p>Update your discussion below.</p>
+
+        {% if error %}
+        <p>{{ error }}</p>
+        {% endif %}
+
+        <form action="{{ url_for('posts.edit_post', post_id=post.id) }}" method="POST">
+
+            <div class="form-group">
+
+                <label for="title">Discussion Title</label>
+
+                <input type="text" id="title" name="title" value="{{ post.title }}" required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="content">Your Discussion</label>
+
+                <textarea id="content" name="content" rows="10" required>{{ post.content }}</textarea>
+
+            </div>
+
+            <button type="submit" class="btn-post">
+                Save Changes
+            </button>
+
+            <a href="{{ url_for('posts.get_post', post_id=post.id) }}">
+                Cancel
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

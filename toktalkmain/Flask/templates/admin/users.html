@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+
+{% block title %}
+Manage Users
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h1>Manage Users</h1>
+
+    <hr>
+
+    {% if users %}
+
+    <table class="table table-bordered table-striped">
+
+        <thead>
+
+            <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Date Joined</th>
+                <th>Admin</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for user in users %}
+
+            <tr>
+
+                <td>{{ user.id }}</td>
+                <td>{{ user.full_name }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.created_at.strftime("%d %b %Y") }}</td>
+
+                <td>
+                    {% if user.is_admin %}
+                    Yes
+                    {% else %}
+                    No
+                    {% endif %}
+                </td>
+
+                <td>
+
+                    {% if user.is_banned %}
+                    <span class="badge bg-danger">Banned</span>
+
+                    {% elif user.is_suspended %}
+                    <span class="badge bg-warning text-dark">Suspended</span>
+
+                    {% else %}
+                    <span class="badge bg-success">Active</span>
+
+                    {% endif %}
+
+                </td>
+
+                <td>
+
+                    {% if user.id != current_user.id %}
+
+                    {% if not user.is_banned %}
+
+                    {% if user.is_suspended %}
+
+                    <form method="POST" action="{{ url_for('admin.unsuspend_user', id=user.id) }}"
+                        style="display:inline;" onsubmit="return confirm('Unsuspend this user?');">
+
+                        <button class="btn btn-success btn-sm">
+                            Unsuspend
+                        </button>
+
+                    </form>
+
+                    {% else %}
+
+                    <form method="POST" action="{{ url_for('admin.suspend_user', id=user.id) }}" style="display:inline;"
+                        onsubmit="return confirm('Suspend this user?');">
+
+                        <button class="btn btn-warning btn-sm">
+                            Suspend
+                        </button>
+
+                    </form>
+
+                    {% endif %}
+
+                    <form method="POST" action="{{ url_for('admin.ban_user', id=user.id) }}" style="display:inline;"
+                        onsubmit="return confirm('Ban this user? This action can be reversed later.');">
+
+                        <button class="btn btn-danger btn-sm">
+                            Ban
+                        </button>
+
+                    </form>
+
+                    {% else %}
+
+                    <form method="POST" action="{{ url_for('admin.unban_user', id=user.id) }}" style="display:inline;"
+                        onsubmit="return confirm('Unban this user?');">
+
+                        <button class="btn btn-primary btn-sm">
+                            Unban
+                        </button>
+
+                    </form>
+
+                    {% endif %}
+
+                    {% else %}
+
+                    <span class="text-muted">Current Admin</span>
+
+                    {% endif %}
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    {% else %}
+
+    <p>No users found.</p>
+
+    {% endif %}
+
+    <a href="{{ url_for('admin.dashboard') }}" class="btn btn-secondary">
+        Back to Dashboard
+    </a>
+
+</div>
+
+{% endblock %}

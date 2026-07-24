@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}
+Add New Post
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h1>Add New Post</h1>
+
+    <hr>
+
+    <form method="POST">
+
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+
+            <input type="text" class="form-control" id="title" name="title" placeholder="Enter post title" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="content" class="form-label">Content</label>
+
+            <textarea class="form-control" id="content" name="content" rows="8" placeholder="Write your post here..."
+                required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-success">
+            Publish Post
+        </button>
+
+        <a href="{{ url_for('admin.posts') }}" class="btn btn-secondary">
+            Cancel
+        </a>
+
+    </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}
+Create Post
+{% endblock %}
+
+{% block content %}
+
+<div class="create-post-container">
+
+    <div class="create-post-card">
+
+        <h1>Create New Discussion</h1>
+
+        <p>Share your thoughts with the TokTalk community.</p>
+
+        <form method="POST" onsubmit="return confirm('Are you sure you want to publish this discussion?');">
+
+            <!-- Post Title -->
+
+            <div class="form-group">
+
+                <label>Discussion Title</label>
+
+                <input type="text" name="title" placeholder="Enter discussion title" required>
+
+            </div>
+
+
+            <!-- Post Content -->
+
+            <div class="form-group">
+
+                <label>Your Discussion</label>
+
+                <textarea name="content" rows="10" placeholder="Write your discussion here..." required></textarea>
+
+            </div>
+
+            <button class="btn-post">
+
+                Publish Discussion
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

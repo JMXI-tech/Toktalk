@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}
+Admin Dashboard
+{% endblock %}
+
+{% block content %}
+
+<h1>TokTalk Forum - Admin Dashboard</h1>
+
+<hr>
+<h3>Forum Statistics</h3>
+
+<ul>
+    <li>Total Users: {{ stats.users }}</li>
+    <li>Total Posts: {{ stats.posts }}</li>
+    <li>Total Comments: {{ stats.comments }}</li>
+    <li>Total Likes: {{ stats.likes }}</li>
+</ul>
+
+<hr>
+
+<h3>Admin Menu</h3>
+
+<ul>
+    <li><a href="{{ url_for('admin.users') }}">View Users</a></li>
+    <li><a href="{{ url_for('admin.posts') }}">View Posts</a></li>
+    <li><a href="{{ url_for('admin.add_post') }}">Add New Post</a></li>
+
+    {% endblock %}
