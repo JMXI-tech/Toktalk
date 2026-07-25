@@ -43,12 +43,12 @@ def create_app():
 
     # Home route
     @app.route("/")
-    def home():
+    def welcome():
         return render_template("toktalk_welcome.html")
 
     #welcome route
     @app.route("/")
-    def welcome():
+    def home():
         posts = Post.query.order_by(Post.created_at.desc()).all()
         return render_template("home.html", posts=posts)
 
