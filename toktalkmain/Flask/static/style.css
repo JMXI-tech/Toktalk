@@ -1123,8 +1123,8 @@ button:hover {
     animation: heroFade .8s ease;
 }
 
+/* Hero Animation */
 @keyframes heroFade {
-
     from {
         opacity: 0;
         transform: translateY(25px);
@@ -1134,19 +1134,9 @@ button:hover {
         opacity: 1;
         transform: translateY(0);
     }
-
 }
 
-.hero-section h1 {
-    color: white;
-    font-size: 40px;
-    margin-bottom: 15px;
-}
-/*==========================================
-        TokTalk Forum - Part 5
-      Hero Section & Responsive Design
-==========================================*/
-
+/* Hero Section */
 .hero-section {
     width: 100%;
     max-width: 900px;
@@ -1156,11 +1146,11 @@ button:hover {
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(8px);
     border-radius: 15px;
-    animation: fadeIn 1s ease-in-out;
+    animation: heroFade 1s ease-in-out;
 }
 
-.hero-section h2 {
-    color: #E0E7FF;
+.hero-section h1 {
+    color: white;
     font-size: 2.5rem;
     margin-bottom: 15px;
 }
@@ -1172,6 +1162,7 @@ button:hover {
     margin-bottom: 25px;
 }
 
+/* Hero Buttons */
 .hero-buttons {
     display: flex;
     justify-content: center;
@@ -1180,12 +1171,13 @@ button:hover {
 }
 
 .hero-buttons .btn {
+    display: inline-block;
     padding: 14px 28px;
     border-radius: 30px;
     text-decoration: none;
     font-size: 1rem;
     font-weight: bold;
-    transition: 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .hero-buttons .primary-btn {
@@ -1209,10 +1201,12 @@ button:hover {
     color: #111827;
 }
 
+/* Responsive Design */
 @media (max-width: 768px) {
 
     header {
         flex-direction: column;
+        align-items: center;
         gap: 15px;
         padding: 15px;
     }
@@ -1220,6 +1214,7 @@ button:hover {
     nav ul {
         flex-direction: column;
         width: 100%;
+        padding: 0;
     }
 
     nav ul li {
@@ -1228,11 +1223,11 @@ button:hover {
     }
 
     .hero-section {
-        padding: 25px;
         margin: 20px;
+        padding: 25px;
     }
 
-    .hero-section h2 {
+    .hero-section h1 {
         font-size: 2rem;
     }
 
@@ -1242,9 +1237,11 @@ button:hover {
 
     .hero-buttons {
         flex-direction: column;
+        align-items: center;
     }
 
     .hero-buttons .btn {
         width: 100%;
+        max-width: 300px;
     }
 }
