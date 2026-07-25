@@ -41,12 +41,12 @@ def create_app():
     def load_user(user_id):
         return db.session.get(User, int(user_id))
 
-    # Home route
+    # Welcome route
     @app.route("/")
     def welcome():
         return render_template("toktalk_welcome.html")
 
-    #welcome route
+    #Home route
     @app.route("/")
     def home():
         posts = Post.query.order_by(Post.created_at.desc()).all()
