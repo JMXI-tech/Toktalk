@@ -1,90 +1,275 @@
-/*This section styles the forum*/
-/*First we remove the default spacing*/
+/*==========================================
+        TokTalk Forum - Part 1
+   Animated Background + Global Styles
+==========================================*/
 
-body {
+/* Reset */
+
+* {
     margin: 0;
     padding: 0;
-
-    font-family: 'Times New Roman', Times, serif;
-
-    background: white;
-}
-
-/* Here we style the Navigation Bar*/
-
-nav {
-    background: #1E1B4B;
-    padding: 18px 30px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    /* Added */
-    gap: 15px;
-    /* Reduced slightly */
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 8px 12px;
-    transition: all .3s ease;
-}
-
-nav a:hover {
-    background: navy;
-    border-radius: 8px;
-}
-
-/* This section we'll style the content box*/
-.container {
-    width: 90%;
-    max-width: 1000px;
-    margin: auto;
-    background: white;
-    padding: 20px;
-    margin-top: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .15);
     box-sizing: border-box;
 }
 
-/* This section we style the Headings*/
+/* Theme Colors */
+
+:root {
+    --navy: #1E1B4B;
+    --navy-dark: #0D2740;
+    --blue: #2563EB;
+    --sky: #8FD3F4;
+    --gold: #F6B52C;
+    --white: #FFFFFF;
+    --glass: rgba(255,255,255,.95);
+}
+
+/* Body */
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top,
+            #1a4a73 0%,
+            #0d2740 55%,
+            #081b2c 100%);
+    background-attachment: fixed;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Animated Background */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 20%,
+            rgba(143,211,244,.18),
+            transparent 28%),
+
+        radial-gradient(circle at 80% 25%,
+            rgba(246,181,44,.15),
+            transparent 24%),
+
+        radial-gradient(circle at 50% 80%,
+            rgba(255,255,255,.08),
+            transparent 30%);
+    animation: backgroundMove 18s ease-in-out infinite alternate;
+    z-index: -3;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+        radial-gradient(rgba(255,255,255,.25) 1px,
+        transparent 1px);
+
+    background-size: 40px 40px;
+
+    animation: particlesMove 40s linear infinite;
+
+    opacity: .35;
+
+    z-index: -2;
+}
+
+/* Background Animation */
+
+@keyframes backgroundMove {
+
+    from {
+        transform: scale(1)
+        translate(0,0);
+    }
+
+    to {
+        transform: scale(1.08)
+        translate(-20px,-20px);
+    }
+
+}
+
+@keyframes particlesMove {
+
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-300px);
+    }
+
+}
+
+/* Navigation */
+
+nav {
+
+    background: rgba(30,27,75,.92);
+
+    backdrop-filter: blur(10px);
+
+    padding: 18px 30px;
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 15px;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+    box-shadow: 0 3px 12px rgba(0,0,0,.25);
+
+}
+
+nav a {
+
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    padding: 10px 16px;
+
+    border-radius: 8px;
+
+    transition: .3s;
+
+}
+
+nav a:hover {
+
+    background: var(--blue);
+
+    transform: translateY(-2px);
+
+}
+
+/* Main Container */
+
+.container {
+
+    width: 90%;
+
+    max-width: 1000px;
+
+    margin: 30px auto;
+
+    background: rgba(255,255,255,.95);
+
+    backdrop-filter: blur(10px);
+
+    padding: 25px;
+
+    border-radius: 14px;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,.18);
+
+}
+
+/* Headings */
 
 h1 {
-    color: #1e3a8a;
+
+    color: var(--blue);
+
 }
 
 h2 {
-    color: #333333;
+
+    color: #333;
+
 }
+
+/* Forms */
 
 form {
+
     width: 100%;
+
 }
 
-input {
+input,
+textarea,
+select {
+
     width: 100%;
-    padding: 10px;
+
+    padding: 12px;
+
     border: 1px solid #ccc;
-    border-radius: 6px;
+
+    border-radius: 8px;
+
     margin-top: 5px;
+
+    font-size: 15px;
+
+    transition: .3s;
+
 }
+
+input:focus,
+textarea:focus,
+select:focus {
+
+    border-color: var(--blue);
+
+    outline: none;
+
+    box-shadow: 0 0 8px rgba(37,99,235,.25);
+
+}
+
+/* Buttons */
 
 button {
-    background: #2563eb;
+
+    background: var(--blue);
+
     color: white;
+
     border: none;
+
     padding: 12px 20px;
-    border-radius: 6px;
+
+    border-radius: 8px;
+
     cursor: pointer;
+
     font-size: 16px;
+
+    transition: .3s;
+
 }
 
 button:hover {
-    background: #1d4ed8;
-}
 
+    background: #1D4ED8;
+
+    transform: translateY(-2px);
+
+}
+/*==========================================
+        TokTalk Forum - Part 2
+ Login + Home Feed + Profile + Create Post
+==========================================*/
+
+/* ==========================
+   Login Page
+========================== */
 
 .login-container {
     display: flex;
@@ -95,50 +280,48 @@ button:hover {
 
 .login-card {
     width: 420px;
-    background: white;
+    background: rgba(255,255,255,.96);
+    backdrop-filter: blur(12px);
     padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
+    border-radius: 18px;
+    border-top: 5px solid var(--blue);
+    box-shadow: 0 15px 35px rgba(0,0,0,.25);
+    transition: .35s;
+}
+
+.login-card:hover {
+    transform: translateY(-5px);
 }
 
 .login-card h1 {
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    color: var(--navy);
 }
 
 .login-card p {
     text-align: center;
     color: #666;
-    margin-bottom: 25px;
+    margin-bottom: 28px;
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 22px;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     font-weight: bold;
+    color: var(--navy);
 }
 
 .form-group input {
     width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
-    box-sizing: border-box;
 }
 
-.form-group input:focus {
-    border-color: #2563eb;
-    outline: none;
-}
-
-.remember input[type="checkbox"] {
-    width: auto;
-    margin: 0;
+.remember {
+    margin: 15px 0;
 }
 
 .remember label {
@@ -148,138 +331,180 @@ button:hover {
     cursor: pointer;
 }
 
+.remember input[type="checkbox"] {
+    width: auto;
+}
+
 .btn-login {
     width: 100%;
     padding: 14px;
-    background: #2563eb;
+    background: linear-gradient(135deg,var(--blue),#3B82F6);
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 17px;
+    font-weight: bold;
     cursor: pointer;
-
+    transition: .3s;
 }
 
 .btn-login:hover {
-    background: #1d4ed8;
+    background: linear-gradient(135deg,#1D4ED8,#2563EB);
+    transform: translateY(-2px);
 }
 
 .extra-links {
-    margin-top: 20px;
+    margin-top: 22px;
     text-align: center;
 }
 
 .extra-links a {
+    color: var(--blue);
     text-decoration: none;
-    color: #2563eb;
+    font-weight: bold;
 }
 
-/* Home Feed */
+.extra-links a:hover {
+    text-decoration: underline;
+}
+
+/* ==========================
+   Home Feed
+========================== */
 
 .post-card {
-    background: white;
-    padding: 20px;
+    background: rgba(255,255,255,.96);
+    backdrop-filter: blur(10px);
+    padding: 22px;
     margin-bottom: 25px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+    border-radius: 15px;
+    border-left: 5px solid var(--blue);
+    box-shadow: 0 8px 22px rgba(0,0,0,.12);
+    transition: .35s;
+}
+
+.post-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px rgba(0,0,0,.18);
 }
 
 .post-card h3 {
-    color: #1e3a8a;
-    margin-bottom: 10px;
+    color: var(--navy);
+    margin-bottom: 12px;
+}
+
+.post-card h3 a {
+    color: var(--navy);
+    text-decoration: none;
+}
+
+.post-card h3 a:hover {
+    color: var(--blue);
 }
 
 .post-info {
-    color: #777;
+    color: #666;
     font-size: 14px;
     margin-bottom: 15px;
 }
 
+.post-card p {
+    line-height: 1.7;
+    color: #333;
+}
+
 .post-actions {
     margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .post-actions button {
-    margin-right: 10px;
+    padding: 10px 18px;
 }
 
-
-/* Here we style profile.html */
+/* ==========================
+   Profile Page
+========================== */
 
 .profile-container {
     width: 100%;
     max-width: 700px;
-    margin: 30px auto;
+    margin: 35px auto;
     padding: 35px;
-    background: #fff;
-    border-radius: 15px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, .08);
-    border-top: 5px solid #2563EB;
+    background: rgba(255,255,255,.96);
+    backdrop-filter: blur(12px);
+    border-radius: 18px;
+    border-top: 5px solid var(--blue);
+    box-shadow: 0 15px 35px rgba(0,0,0,.18);
 }
 
 .profile-container h2 {
     text-align: center;
-    color: #1E1B4B;
-    font-size: 36px;
+    color: var(--navy);
+    font-size: 34px;
     margin-bottom: 25px;
 }
 
 .profile-info {
     margin-bottom: 18px;
+    line-height: 1.8;
     font-size: 17px;
-    line-height: 1.7;
 }
 
 .profile-info strong {
-    color: #1E1B4B;
+    color: var(--navy);
 }
 
 .profile-actions {
-    margin-top: 30px;
     display: flex;
     justify-content: center;
     gap: 15px;
     flex-wrap: wrap;
+    margin-top: 30px;
 }
 
 .profile-actions a {
     text-decoration: none;
     padding: 12px 24px;
+    background: var(--blue);
+    color: white;
     border-radius: 8px;
-    background: #2563EB;
-    color: #fff;
     font-weight: bold;
     transition: .3s;
 }
 
 .profile-actions a:hover {
-    background: #1E40AF;
+    background: #1D4ED8;
     transform: translateY(-2px);
 }
 
-/* Here we style CREATE POST PAGE */
+/* ==========================
+   Create Post Page
+========================== */
 
 .create-post-container {
     display: flex;
     justify-content: center;
-    margin: 20px auto;
+    margin: 25px auto;
 }
 
 .create-post-card {
     width: 100%;
-    max-width: 700px;
-    background: #fff;
+    max-width: 750px;
+    background: rgba(255,255,255,.96);
+    backdrop-filter: blur(12px);
     padding: 35px;
-    border-radius: 15px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, .08);
-    border-top: 5px solid #2563EB;
+    border-radius: 18px;
+    border-top: 5px solid var(--blue);
+    box-shadow: 0 15px 35px rgba(0,0,0,.18);
 }
 
 .create-post-card h2 {
-    color: #1E1B4B;
     text-align: center;
+    color: var(--navy);
     margin-bottom: 10px;
-    font-size: 36px;
 }
 
 .create-post-card p {
@@ -290,29 +515,9 @@ button:hover {
 
 .create-post-card label {
     display: block;
-    font-weight: bold;
-    color: #1E1B4B;
     margin: 18px 0 8px;
-}
-
-.create-post-card input,
-.create-post-card select,
-.create-post-card textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
-    box-sizing: border-box;
-    transition: .3s;
-}
-
-.create-post-card input:focus,
-.create-post-card select:focus,
-.create-post-card textarea:focus {
-    border-color: #2563EB;
-    outline: none;
-    box-shadow: 0 0 8px rgba(37, 99, 235, .2);
+    font-weight: bold;
+    color: var(--navy);
 }
 
 .create-post-card textarea {
@@ -322,12 +527,12 @@ button:hover {
 
 .btn-post {
     width: 100%;
-    padding: 15px;
     margin-top: 25px;
-    background: #2563EB;
-    color: #fff;
+    padding: 15px;
+    background: linear-gradient(135deg,var(--blue),#3B82F6);
+    color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 17px;
     font-weight: bold;
     cursor: pointer;
@@ -335,27 +540,39 @@ button:hover {
 }
 
 .btn-post:hover {
-    background: #1E40AF;
+    background: linear-gradient(135deg,#1D4ED8,#2563EB);
     transform: translateY(-2px);
 }
+/*==========================================
+        TokTalk Forum - Part 3
+ Edit Profile + Search + Post + Comments
+==========================================*/
 
-/* Here we style edit_profile */
+/* ==========================
+   Edit Profile Page
+========================== */
 
 .edit-profile-container {
     width: 100%;
     max-width: 650px;
-    margin: 10px auto;
+    margin: 30px auto;
     padding: 35px;
-    background: #fff;
-    border-radius: 15px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, .08);
-    border-top: 5px solid #2563EB;
+    background: rgba(255,255,255,.96);
+    backdrop-filter: blur(12px);
+    border-radius: 18px;
+    border-top: 5px solid var(--blue);
+    box-shadow: 0 15px 35px rgba(0,0,0,.18);
+    transition: .3s;
+}
+
+.edit-profile-container:hover {
+    transform: translateY(-4px);
 }
 
 .edit-profile-container h2 {
     text-align: center;
-    color: #1E1B4B;
-    font-size: 36px;
+    color: var(--navy);
+    font-size: 34px;
     margin-bottom: 10px;
 }
 
@@ -369,7 +586,7 @@ button:hover {
     display: block;
     margin: 18px 0 8px;
     font-weight: bold;
-    color: #1E1B4B;
+    color: var(--navy);
 }
 
 .edit-profile-container input,
@@ -379,30 +596,29 @@ button:hover {
     border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 16px;
-    box-sizing: border-box;
     transition: .3s;
 }
 
 .edit-profile-container input:focus,
 .edit-profile-container textarea:focus {
-    border-color: #2563EB;
+    border-color: var(--blue);
     outline: none;
-    box-shadow: 0 0 8px rgba(37, 99, 235, .2);
+    box-shadow: 0 0 10px rgba(37,99,235,.25);
 }
 
 .edit-profile-container textarea {
-    min-height: 140px;
+    min-height: 150px;
     resize: vertical;
 }
 
 .edit-profile-container button {
     width: 100%;
     margin-top: 25px;
-    padding: 15px;
+    padding: 14px;
     border: none;
-    border-radius: 8px;
-    background: #2563EB;
-    color: #fff;
+    border-radius: 10px;
+    background: linear-gradient(135deg,var(--blue),#3B82F6);
+    color: white;
     font-size: 17px;
     font-weight: bold;
     cursor: pointer;
@@ -410,28 +626,30 @@ button:hover {
 }
 
 .edit-profile-container button:hover {
-    background: #1E40AF;
+    background: linear-gradient(135deg,#1D4ED8,#2563EB);
     transform: translateY(-2px);
 }
 
-
-/* Here we style the search.html */
+/* ==========================
+   Search Page
+========================== */
 
 .search-container {
     width: 100%;
     max-width: 900px;
-    margin: 10px auto;
-    background: #fff;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, .08);
-    border-top: 5px solid #2563EB;
+    margin: 30px auto;
+    background: rgba(255,255,255,.96);
+    backdrop-filter: blur(12px);
+    padding: 35px;
+    border-radius: 18px;
+    border-top: 5px solid var(--blue);
+    box-shadow: 0 15px 35px rgba(0,0,0,.18);
 }
 
 .search-container h2 {
     text-align: center;
-    color: #1E1B4B;
-    font-size: 36px;
+    color: var(--navy);
+    font-size: 34px;
     margin-bottom: 10px;
 }
 
@@ -450,53 +668,38 @@ button:hover {
 .search-form input {
     flex: 1;
     padding: 14px;
-    border: 1px solid #ccc;
     border-radius: 8px;
-    font-size: 16px;
-    transition: .3s;
-}
-
-.search-form input:focus {
-    border-color: #2563EB;
-    outline: none;
-    box-shadow: 0 0 8px rgba(37, 99, 235, .2);
 }
 
 .search-form button {
     padding: 14px 25px;
-    background: #2563EB;
-    color: #fff;
-    border: none;
     border-radius: 8px;
-    font-size: 16px;
     font-weight: bold;
-    cursor: pointer;
-    transition: .3s;
 }
 
-.search-form button:hover {
-    background: #1E40AF;
-    transform: translateY(-2px);
-}
+/* ==========================
+   Search Results
+========================== */
 
 .search-results h3 {
-    color: #1E1B4B;
+    color: var(--navy);
     margin-bottom: 20px;
 }
 
 .result-card {
-    background: #fff;
-    border-left: 4px solid #2563EB;
-    border-radius: 12px;
+    background: rgba(255,255,255,.96);
+    backdrop-filter: blur(10px);
+    border-left: 5px solid var(--blue);
+    border-radius: 14px;
     padding: 20px;
     margin-bottom: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
+    box-shadow: 0 8px 20px rgba(0,0,0,.12);
     transition: .3s;
 }
 
 .result-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px rgba(0,0,0,.18);
 }
 
 .result-card h4 {
@@ -504,66 +707,62 @@ button:hover {
 }
 
 .result-card h4 a {
-    color: #1E1B4B;
+    color: var(--navy);
     text-decoration: none;
 }
 
 .result-card h4 a:hover {
-    color: #2563EB;
+    color: var(--blue);
 }
 
 .result-card p {
-    color: #555;
-    line-height: 1.6;
+    color: #444;
+    line-height: 1.7;
     margin-bottom: 12px;
 }
 
 .result-card a {
-    color: #2563EB;
-    text-decoration: none;
+    color: var(--blue);
     font-weight: bold;
+    text-decoration: none;
 }
 
 .result-card a:hover {
     text-decoration: underline;
 }
 
-/*Here we style the post.html*/
+/* ==========================
+   View Post Page
+========================== */
 
 .post-container {
-    width: 80%;
+    width: 90%;
     max-width: 900px;
     margin: 40px auto;
 }
 
 .post-card {
-    background: #fff;
-    border-radius: 12px;
-    padding: 20px;
+    background: rgba(255,255,255,.96);
+    backdrop-filter: blur(10px);
+    border-left: 5px solid var(--blue);
+    border-radius: 15px;
+    padding: 22px;
     margin-bottom: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border-left: 3px solid #2563EB;
-    transition: 0.3s ease;
-}
-
-.post-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 10px 25px rgba(0,0,0,.15);
 }
 
 .post-card h3 {
-    margin: 0 0 10px;
+    margin-bottom: 10px;
 }
 
 .post-card h3 a {
-    color: #1E1B4B;
+    color: var(--navy);
     text-decoration: none;
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 25px;
 }
 
 .post-card h3 a:hover {
-    color: #2563EB;
+    color: var(--blue);
 }
 
 .post-info {
@@ -573,522 +772,404 @@ button:hover {
 }
 
 .post-card p {
-    line-height: 1.6;
     color: #333;
+    line-height: 1.7;
 }
 
 .post-action {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 20px;
-    padding-top: 15px;
-    border-top: 1px solid #eee;
     flex-wrap: wrap;
-    gap: 10px;
+    padding-top: 18px;
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+    gap: 12px;
 }
 
 .post-action a {
+    color: var(--blue);
     text-decoration: none;
-    color: #2563EB;
-    font-weight: 600;
+    font-weight: bold;
+}
+
+.post-action a:hover {
+    text-decoration: underline;
 }
 
 .post-action span {
-    color: #555;
+    color: #666;
 }
 
+/* ==========================
+   Comments Section
+========================== */
+
 .comments-section {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background: rgba(255,255,255,.96);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 25px;
+    margin-top: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,.15);
+}
+
+.comments-section h3 {
+    color: var(--navy);
+    margin-bottom: 20px;
 }
 
 .comment {
+    padding: 15px 0;
     border-bottom: 1px solid #ddd;
-    padding: 10px 0;
+}
+
+.comment:last-child {
+    border-bottom: none;
+}
+
+.comment strong {
+    color: var(--navy);
+}
+
+.comment p {
+    margin-top: 8px;
+    color: #444;
+    line-height: 1.6;
 }
 
 .comments-section textarea {
     width: 100%;
+    min-height: 130px;
     margin-top: 20px;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 8px;
+    resize: vertical;
+}
+
+.comments-section textarea:focus {
+    border-color: var(--blue);
+    outline: none;
+    box-shadow: 0 0 10px rgba(37,99,235,.25);
 }
 
 .comments-section button {
-    margin-top: 10px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background: #28a745;
+    margin-top: 15px;
+    padding: 12px 22px;
+    background: linear-gradient(135deg,var(--blue),#3B82F6);
+    border-radius: 8px;
     color: white;
-    cursor: pointer;
+    font-weight: bold;
 }
 
 .comments-section button:hover {
-    background: #218838;
+    background: linear-gradient(135deg,#1D4ED8,#2563EB);
+    transform: translateY(-2px);
 }
+/*==========================================
+        TokTalk Forum - Part 4
+  Edit Post + Error Pages + Flash Messages
+==========================================*/
 
-/* Here we style edit_post.html*/
+/* ==========================
+   Edit Post Page
+========================== */
 
 .edit-post-container {
-    width: 70%;
+    width: 90%;
     max-width: 800px;
     margin: 40px auto;
-    background: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    padding: 35px;
+    background: rgba(255,255,255,.96);
+    backdrop-filter: blur(12px);
+    border-radius: 18px;
+    border-top: 5px solid var(--blue);
+    box-shadow: 0 15px 35px rgba(0,0,0,.18);
+    transition: .3s;
+}
+
+.edit-post-container:hover {
+    transform: translateY(-4px);
 }
 
 .edit-post-container h2 {
     text-align: center;
+    color: var(--navy);
+    font-size: 34px;
     margin-bottom: 10px;
 }
 
 .edit-post-container p {
     text-align: center;
-    margin-bottom: 25px;
     color: #666;
+    margin-bottom: 30px;
 }
 
 .edit-post-container label {
     display: block;
-    margin-top: 15px;
+    margin: 18px 0 8px;
     font-weight: bold;
+    color: var(--navy);
 }
 
 .edit-post-container input,
 .edit-post-container textarea {
     width: 100%;
     padding: 12px;
-    margin-top: 8px;
     border: 1px solid #ccc;
-    border-radius: 6px;
+    border-radius: 8px;
     font-size: 16px;
+    transition: .3s;
+}
+
+.edit-post-container input:focus,
+.edit-post-container textarea:focus {
+    border-color: var(--blue);
+    outline: none;
+    box-shadow: 0 0 10px rgba(37,99,235,.25);
+}
+
+.edit-post-container textarea {
+    min-height: 200px;
+    resize: vertical;
 }
 
 .button-group {
-    margin-top: 25px;
     display: flex;
     gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
 }
 
 .button-group button {
-    padding: 12px 20px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
+    flex: 1;
+    min-width: 150px;
+    padding: 14px;
+    border-radius: 10px;
+    background: linear-gradient(135deg,var(--blue),#3B82F6);
+    color: white;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.button-group button:hover {
+    background: linear-gradient(135deg,#1D4ED8,#2563EB);
+    transform: translateY(-2px);
 }
 
 .cancel-btn {
-    text-decoration: none;
-    padding: 12px 20px;
-    background: #999;
-    color: white;
-    border-radius: 6px;
-}
-
-/* Here we style the 404 ERROR PAGE */
-
-.error-container {
-
+    flex: 1;
+    min-width: 150px;
     text-align: center;
-
-    margin: 100px auto;
-
-    max-width: 600px;
-
-}
-
-.error-container h1 {
-
-    font-size: 120px;
-
-    color: #2563EB;
-
-    margin-bottom: 10px;
-
-}
-
-.error-container h2 {
-
-    font-size: 35px;
-
-    margin-bottom: 20px;
-
-}
-
-.error-container p {
-
-    color: #666;
-
-    font-size: 18px;
-
-    margin-bottom: 30px;
-
-}
-
-.error-btn {
-
-    display: inline-block;
-
-    background: #2563EB;
-
-    color: white;
-
-    padding: 12px 25px;
-
-    border-radius: 8px;
-
     text-decoration: none;
-
-}
-
-.error-btn:hover {
-
-    background: #1E40AF;
-
-}
-
-/* Here we style the 403 ERROR PAGE */
-
-.error-container {
-
-    text-align: center;
-
-    margin: 100px auto;
-
-    max-width: 600px;
-
-}
-
-.error-container h1 {
-
-    font-size: 120px;
-
-    color: #dc3545;
-
-    margin-bottom: 10px;
-
-}
-
-.error-container h2 {
-
-    font-size: 35px;
-
-    margin-bottom: 20px;
-
-}
-
-.error-container p {
-
-    color: #666;
-
-    font-size: 18px;
-
-    margin-bottom: 30px;
-
-}
-
-.error-btn {
-
-    display: inline-block;
-
-    background: #dc3545;
-
+    padding: 14px;
+    border-radius: 10px;
+    background: #6B7280;
     color: white;
-
-    padding: 12px 25px;
-
-    border-radius: 8px;
-
-    text-decoration: none;
-
+    font-weight: bold;
+    transition: .3s;
 }
 
-.error-btn:hover {
-
-    background: #b02a37;
-
+.cancel-btn:hover {
+    background: #4B5563;
+    transform: translateY(-2px);
 }
 
-/* Here we style 500 ERROR PAGE */
-
-.error-container {
-
-    text-align: center;
-
-    margin: 100px auto;
-
-    max-width: 600px;
-
-}
-
-.error-container h1 {
-
-    font-size: 120px;
-
-    color: #ff9800;
-
-    margin-bottom: 10px;
-
-}
-
-.error-container h2 {
-
-    font-size: 35px;
-
-    margin-bottom: 20px;
-
-}
-
-.error-container p {
-
-    color: #666;
-
-    font-size: 18px;
-
-    margin-bottom: 30px;
-
-}
-
-.error-btn {
-
-    display: inline-block;
-
-    background: #ff9800;
-
-    color: white;
-
-    padding: 12px 25px;
-
-    border-radius: 8px;
-
-    text-decoration: none;
-
-}
-
-.error-btn:hover {
-
-    background: #e68900;
-
-}
+/* ==========================
+   Flash Messages
+========================== */
 
 .flash-message {
-    background: #d4edda;
-    color: #155724;
-    padding: 12px;
-    margin: 15px auto;
-    width: 80%;
-    max-width: 600px;
-    border-radius: 8px;
+    width: 90%;
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 15px 20px;
+    border-radius: 12px;
     text-align: center;
     font-weight: bold;
+    background: rgba(212,237,218,.96);
+    color: #155724;
+    border-left: 5px solid #28A745;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 20px rgba(0,0,0,.12);
+    animation: fadeInDown .5s ease;
 }
+
+@keyframes fadeInDown {
+
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+/* ==========================
+   Recent Discussions
+========================== */
 
 #recent-discussions {
     text-align: center;
-    color: #1E1B4B;
-    margin: 35px 0 25px;
-    font-size: 32px;
+    color: var(--navy);
+    margin: 40px 0 25px;
+    font-size: 34px;
     position: relative;
 }
 
 #recent-discussions::after {
     content: "";
     display: block;
-    width: 70px;
+    width: 80px;
     height: 4px;
-    background: #2563EB;
-    margin: 10px auto 0;
-    border-radius: 5px;
+    margin: 12px auto 0;
+    border-radius: 10px;
+    background: linear-gradient(to right,
+            var(--blue),
+            var(--gold));
 }
 
-/* Mobile Devices */
-@media (max-width:768px) {
+/* ==========================
+   Error Pages
+========================== */
 
-    nav {
-        padding: 10px;
-        gap: 10px;
-    }
-
-    nav a {
-        font-size: 15px;
-        padding: 8px 10px;
-    }
-
-    .container {
-        width: 95%;
-        padding: 15px;
-        margin-top: 20px;
-    }
-
-    h1 {
-        font-size: 28px;
-        text-align: center;
-    }
-
-    h2 {
-        font-size: 24px;
-        text-align: center;
-    }
-
-    .login-card,
-    .create-post-card,
-    .edit-profile-container,
-    .edit-post-container,
-    .search-container,
-    .post-container {
-
-        width: 100%;
-        max-width: none;
-        padding: 20px;
-        box-sizing: border-box;
-
-    }
-
-    .button-group {
-
-        flex-direction: column;
-
-    }
-
-    input:not([type="checkbox"]),
-    textarea,
-    select,
-    button {
-
-        width: 100%;
-        box-sizing: border-box;
-
-    }
-
-    .search-form {
-        flex-direction: column;
-    }
-
-    .search-form input,
-    .search-form button {
-        width: 100%;
-    }
-
-
-    .profile-container {
-        margin: 15px 10px;
-        padding: 20px;
-    }
-
-    .profile-container h2 {
-        font-size: 30px;
-        margin-bottom: 20px;
-    }
-
-    .profile-container img {
-        width: 110px;
-        height: 110px;
-        border-radius: 50%;
-        display: block;
-        margin: 0 auto 20px;
-        object-fit: cover;
-    }
-
-    .profile-info {
-        text-align: center;
-    }
-
-    .profile-info p {
-        margin: 10px 0;
-        word-break: break-word;
-    }
-
-    .profile-actions {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .profile-actions a {
-        width: 100%;
-        max-width: 250px;
-        text-align: center;
-    }
-
-
+.error-container {
+    width: 90%;
+    max-width: 650px;
+    margin: 100px auto;
+    text-align: center;
+    background: rgba(255,255,255,.96);
+    backdrop-filter: blur(12px);
+    padding: 45px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,.18);
 }
 
-/* Hero Section */
+.error-container h1 {
+    font-size: 110px;
+    margin-bottom: 15px;
+}
+
+.error-container h2 {
+    font-size: 34px;
+    color: var(--navy);
+    margin-bottom: 15px;
+}
+
+.error-container p {
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+/* 404 */
+
+.error-404 h1 {
+    color: var(--blue);
+}
+
+/* 403 */
+
+.error-403 h1 {
+    color: #DC3545;
+}
+
+/* 500 */
+
+.error-500 h1 {
+    color: #F59E0B;
+}
+
+.error-btn {
+    display: inline-block;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 10px;
+    background: linear-gradient(135deg,var(--blue),#3B82F6);
+    color: white;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.error-btn:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg,#1D4ED8,#2563EB);
+}
+
+/* ==========================
+   Utility Classes
+========================== */
+
+.text-center {
+    text-align: center;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.hidden {
+    display: none;
+}
+/*==========================================
+        TokTalk Forum - Part 5
+ Mobile Responsive + Hero + Final Polish
+==========================================*/
+
+/* ==========================
+   Hero Section
+========================== */
 
 .hero-section {
-    background: linear-gradient(135deg, #1E1B4B, #2563EB);
+    background: linear-gradient(135deg,
+            rgba(30,27,75,.92),
+            rgba(37,99,235,.88));
+    backdrop-filter: blur(12px);
     color: white;
     text-align: center;
-    padding: 35px 20px;
-    border-radius: 15px;
-    margin: 20px 10px;
+    padding: 50px 25px;
+    border-radius: 20px;
+    margin: 30px auto;
+    box-shadow: 0 15px 35px rgba(0,0,0,.25);
+    animation: heroFade .8s ease;
+}
+
+@keyframes heroFade {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
 }
 
 .hero-section h1 {
     color: white;
-    font-size: 30px;
-    margin-bottom: 10px;
+    font-size: 40px;
+    margin-bottom: 15px;
 }
 
 .hero-section h2 {
-    color: #E0E7FF;
-    font-size: 28px;
-    margin-bottom: 20px;
-}
-
-.hero-section p {
-    max-width: 700px;
-    margin: 0 auto 30px;
-    font-size: 18px;
-    line-height: 1.6;
-}
-
-.hero-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-.hero-btn-primary,
-.hero-btn-secondary {
-    text-decoration: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.hero-btn-primary {
-    background: white;
-    color: #1E1B4B;
-}
-
-.hero-btn-secondary {
-    border: 2px solid white;
-    color: white;
-}
-
-.hero-btn-primary:hover,
-.hero-btn-secondary:hover {
-    transform: translateY(-2px);
-
-    .post-card {
-        padding: 16px;
-        border-left: 3px solid #2563EB;
-    }
-
-    .post-card h3 a {
-        font-size: 22px;
-    }
-
-    .post-action {
-        justify-content: space-between;
-    }
-}
+    color: #E0E7
